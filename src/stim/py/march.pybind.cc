@@ -16,10 +16,10 @@ void cpuid(int info[4], int infoType) {
 }
 #else
 //  GCC Intrinsics
-#include <cpuid.h>
-void cpuid(int info[4], int infoType) {
+//#include <cpuid.h>
+/*void cpuid(int info[4], int infoType) {
     __cpuid_count(infoType, 0, info[0], info[1], info[2], info[3]);
-}
+}*/
 #endif
 
 std::string detect_march() {
@@ -33,7 +33,7 @@ std::string detect_march() {
     constexpr int avx2_bit_in_ebx = 1 << 5;
     constexpr int sse2_bit_in_edx = 1 << 26;
 
-    int regs[4];
+    /*int regs[4];
     cpuid(regs, INFO_HIGHEST_FUNCTION_PARAMETER);
     auto max_info_param = regs[EAX];
 
@@ -49,7 +49,7 @@ std::string detect_march() {
         if (regs[EDX] & sse2_bit_in_edx) {
             return "sse2";
         }
-    }
+    }*/
 
     return "polyfill";
 }
